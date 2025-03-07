@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . '../models/Produit.php';
+require_once __DIR__ . '/../models/Produit.php';
 
 class ProduitController {
 
@@ -13,6 +13,10 @@ class ProduitController {
         $this->modeleProduit = new Produit();
     }
 
+    public function infosProduit() {
+        $infosProduit = $this->modeleProduit->infosProduit();
+    }
+
     /**
      * Afficher la liste des produits
      * @return void
@@ -21,7 +25,7 @@ class ProduitController {
         $listeProduits = $this->modeleProduit->listeProduits();
 
         // On le met dans la vue
-        include __DIR__ . '/../views/listeProduits.php;';
+        include __DIR__ . '/../views/listeProduits.php';
     }
 
     public function ajouterProduit()
@@ -39,9 +43,9 @@ class ProduitController {
                 exit();
             }
 
-            // On le met dans la vue
-            require __DIR__ . '/../views/ajouterProduit.php';
         }
+        // On le met dans la vue
+        require __DIR__ . '/../views/ajouterProduit.php';
     }
 
     public function modifierProduit() {
@@ -58,9 +62,18 @@ class ProduitController {
                 exit();
             }
 
+        }
             // On le met dans la vue
             require __DIR__ . '/../views/modifierProduit.php';
-        }
     }
+
+    public function supprimerProduit() {
+        $id = $_GET['id'];
+        $this->modeleProduit->supprimer($id);
+        header("Location: index.php?action=liste");
+        exit();
+    }
+
+
 
 }

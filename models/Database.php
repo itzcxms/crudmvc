@@ -21,7 +21,7 @@ class database
     {
         //Configuration de la base de données
         $host = "localhost";
-        $dbname = "phpcrud";
+        $dbname = "crud";
         $user = "root";
         $pass = "";
 
